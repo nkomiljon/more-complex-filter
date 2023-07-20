@@ -1,0 +1,119 @@
+<div class="container">
+    <h3>Form</h3>
+    <form class="form" [formGroup]="form">
+        <div class="wrapper">
+            <div class="">
+                <div class="row">
+                    <span>Where</span>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Outline form field</mat-label>
+                            <input formControlName="column" matInput placeholder="Placeholder">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Favorite food</mat-label>
+                            <mat-select formControlName="operand" name="">
+                            <mat-option>
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Outline form field</mat-label>
+                            <input formControlName="value" matInput placeholder="Placeholder">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                            <mat-icon>more_horiz</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div formArrayName="multiLevelForm" class="multilevelform">
+                <div class="wrapper" *ngFor="let formGroup of multiLevelForm.controls; let i = index">
+                    <ng-container formGroupName="{{i}}">
+                        <div class="row">
+                            <div class="condition">
+                                <mat-form-field appearance="outline">
+                                    <mat-select>
+                                        <mat-option formControlName="condition"></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-content">
+                                <div class="wrapper">
+                                    <div class="row">
+                                        <div class="item">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select>
+                                                    <mat-option formControlName="column"></mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="item">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select>
+                                                    <mat-option formControlName="operand"></mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="item">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select>
+                                                    <mat-option formControlName="value"></mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div>
+                                            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                                <mat-icon>more_horiz</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <footer>
+                                        <button mat-button [matMenuTriggerFor]="filter" >
+                                                <mat-icon>add</mat-icon>
+                                                Add a filter
+                                        </button>
+                                    </footer>
+                                </div>
+                            </div>
+                            <div class="form-content-btn">
+                                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                    <mat-icon>more_horiz</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="">
+                <button mat-button [matMenuTriggerFor]="filter" >
+                        <mat-icon>add</mat-icon>
+                        Add a filter
+                        <!-- <mat-icon>keyboard_arrow_down</mat-icon> -->
+                </button>
+                <mat-menu #filter="">
+                    <button mat-menu-item>
+                        <mat-icon>filter_alt</mat-icon>
+                        <span>Add Filter</span>
+                    </button>
+                    <button (click)="addMultilevelFilter()" mat-menu-item>
+                        <mat-icon>filter_list</mat-icon>
+                        <span>Add FilterGroup</span>
+                    </button>
+                </mat-menu>
+            </div>
+            <footer class="footer">
+                <button (click)="submit()" mat-flat-button color="primary">
+                    Send
+                </button>
+            </footer>
+        </div>
+    </form>
+</div>
