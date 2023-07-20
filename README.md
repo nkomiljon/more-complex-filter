@@ -1,5 +1,9 @@
+Resource
+
 https://developers.notion.com/reference/post-database-query-filter#compound-filter-conditions
 
+
+https://www.youtube.com/watch?v=kSfUoItQrHg&t=17s
 /===================================
 SELECT *
 FROM 'table'

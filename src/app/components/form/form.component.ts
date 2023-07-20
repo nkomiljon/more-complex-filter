@@ -22,34 +22,68 @@ export class FormComponent implements OnInit {
       column: [''],
       operand: [null],
       value: [''],
-      multiLevelForm: this.formBulider.array([])
+      multiplyFilter: this.formBulider.array([])
     });
   }
 
 
-  get multiLevelForm() {
-    return this.form.get('multiLevelForm') as FormArray;
+  get multiplyFilter() {
+    return this.form.get('multiplyFilter') as FormArray;
   }
 
-  multiLevelFormInner() {
+  multiplyForm() {
     return this.formBulider.group({
-      condition: [null],
-      column: [''],
-      operand: [null],
-      value: [''],
-    })
+      condition: [''],
+      content: this.formBulider.array([
+        this.formBulider.group({
+          column: [''],
+          operand: [''],
+          value: ['']
+        })
+      ])
+    });
   }
 
-  addMultilevelFilter() {
-    this.multiLevelForm.push(
-        this.formBulider.group({
-          condition: [null],
-          column: [''],
-          operand: [null],
-          value: [''],
-        })
-    );
+  contentArray(index: number) {
+    return this.multiplyFilter.at(index).get('content') as FormArray;
   }
+
+  addMultiplyFilter() {
+    this.multiplyFilter.push(this.multiplyForm());
+  }
+
+  initContent() {
+
+  }
+
+  addContentFilter(index: number) {
+    this.contentArray(index).push(this.formBulider.group({
+      column: [''],
+      operand: [''],
+      value: ['']
+    }))
+  }
+
+  addContentFilterGroup(index: number) {
+    console.log(index);
+    
+    console.log(this.form.value);
+    const data = this.form.value;
+    console.log(data.multiplyFilter[0].condition);
+    
+    if (data.multiplyFilter[0].condition) {
+      this.contentArray(index).push(this.formBulider.group({
+        condition: [''],
+        column: [''],
+        operand: [''],
+        value: ['']
+      }))
+    }
+    
+  }
+
+
+
 
   public submit() {
     console.log(this.form.value);

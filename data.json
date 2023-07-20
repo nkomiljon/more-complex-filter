@@ -1,0 +1,14 @@
+{
+    "filter": {
+        "column": "",
+        "operand": "",
+        "value": "",
+        "or": [
+            {
+                "column": "",
+                "operand": "",
+                "value": ""
+            }
+        ]
+    }
+}

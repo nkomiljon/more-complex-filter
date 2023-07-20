@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="form">
+        <form [formGroup]="form">
+            <div class="">
+                <div class="column">
+                    <div class="row">
+                        <span>Where</span>
+                        <select formControlName="column" name="" id="">
+                            <option *ngFor="let item of [{key: 'and', value: 'And'},{key: 'or', value: 'Or'}]" [value]="item.key">
+                                {{item.value}}
+                            </option>
+                        </select>
+                        <select formControlName="operand" name="" id="">
+                            <option value=""></option>
+                        </select>
+                        <input formControlName="value" type="text">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button (click)="addFilter()">Add filter</button>
+            </div>
+        </form>
+        <footer class="form-footer">
+            <button>Send</button>
+        </footer>
+    </div>
+</div>

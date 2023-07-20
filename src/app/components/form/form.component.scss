@@ -29,6 +29,13 @@
     align-items: center;
 }
 
+.multilevelform {
+
+    &__item {
+        margin-bottom: 20px;
+    }
+}
+
 .condition {
 
     & mat-form-field {
@@ -38,7 +45,7 @@
 
 .form-content {
     flex: 1;
-    max-width: 550px;
+    max-width: 600px;
     padding: 6px;
     border-radius: 6px;
     background-color: #e4eaff;
