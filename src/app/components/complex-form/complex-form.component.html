@@ -1,153 +1,19 @@
 <div class="container">
-    <div class="form">
+    <div class="">
         <form [formGroup]="form">
-            <div formArrayName="oneLevelFilter" class="">
-                <div class="column">
-                    <div class="row">
-                        <span>Where</span>
-                        <select formControlName="column" name="" id="">
-                            <option *ngFor="let item of [{key: 'and', value: 'And'},{key: 'or', value: 'Or'}]" [value]="item.key">
-                                {{item.value}}
-                            </option>
-                        </select>
-                        <select formControlName="operand" name="" id="">
-                            <option value=""></option>
-                        </select>
-                        <input formControlName="value" type="text">
+
+            <div formArrayName="list">
+                <div *ngFor="let form of list.controls; let i = index;">
+                    <div formGroupName="{{i}}">
+                        <input type="text" formControlName="value">
                     </div>
                 </div>
             </div>
 
-            <div formArrayName="multiplyLevelFilter">
-
-            </div>
-            <div>
-                <button (click)="addFilter()">Add filter</button>
-            </div>
         </form>
-        <footer class="form-footer">
-            <button>Send</button>
-        </footer>
 
-        <form class="form-content" [formGroup]="form">
-                <div formArrayName="oneLevelForm" class="onelevelform">
-                      <div class="wrapper">
-                          <div class="" *ngFor="let formGroup of oneLevelForm.controls; let i = index">
-                              <ng-container formGroupName="{{i}}">
-                                  <div class="row">
-                                       <span>Where</span>
-                                       <div class="item">
-                                           <mat-form-field appearance="outline">
-                                               <mat-label>Outline form field</mat-label>
-                                               <input formControlName="column" matInput placeholder="Placeholder">
-                                           </mat-form-field>
-                                       </div>
-                                       <div class="item">
-                                           <mat-form-field appearance="outline">
-                                               <mat-label>Favorite food</mat-label>
-                                                   <mat-select formControlName="operand" name="">
-                                                       <mat-option>
-                                                       </mat-option>
-                                                   </mat-select>
-                                           </mat-form-field>
-                                       </div>
-                                       <div class="item">
-                                           <mat-form-field appearance="outline">
-                                               <input formControlName="value"
-                                                      matInput
-                                                      placeholder="Placeholder">
-                                           </mat-form-field>
-                                       </div>
-                                       <div>
-                                           <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                                               <mat-icon>more_horiz</mat-icon>
-                                           </button>
-                                       </div>
-                                 </div>
-                              </ng-container>
-                          </div>
-                    </div>
-                </div>
-                <!-- =====================================  -->
-                <div formArrayName="multiLevelForm" class="multilevelform">
-                    <div class="wrapper">
-                        <div class="multilevelform__item" *ngFor="let formGroup of multiLevelForm.controls; let i = index">
-                            <ng-container formGroupName="{{i}}">
-                                <div class="row">
-                                    <div class="item condition">
-                                        <mat-form-field appearance="outline">
-                                            <mat-select formControlName="condition">
-                                                <mat-option
-                                                  *ngFor="let item of condition"
-                                                  [value]="item.key">
-                                                  {{ item.value }}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="row content">
-                                        <span>Where</span>
-                                        <div class="item">
-                                          <mat-form-field appearance="outline">
-                                            <mat-select formControlName="column">
-                                              <mat-option></mat-option>
-                                            </mat-select>
-                                          </mat-form-field>
-                                        </div>
-                                        <div class="item">
-                                          <mat-form-field appearance="outline">
-                                            <mat-select formControlName="operand">
-                                              <mat-option></mat-option>
-                                            </mat-select>
-                                          </mat-form-field>
-                                        </div>
-                                        <div class="item">
-                                          <mat-form-field appearance="outline">
-                                            <mat-select formControlName="value">
-                                              <mat-option></mat-option>
-                                            </mat-select>
-                                          </mat-form-field>
-                                        </div>
-
-                                        <button mat-icon-button>
-                                          <mat-icon>more_horiz</mat-icon>
-                                        </button>
-                                    </div>
-
-                                    <div>
-                                      <button>Add a filter</button>
-                                    </div>
-                                </div>
-                            </ng-container>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="">
-                    <button mat-button [matMenuTriggerFor]="filter" >
-                      <mat-icon>add</mat-icon>
-                      Add a filter
-                    </button>
-                    <mat-menu #filter="">
-                        <button mat-menu-item (click)="addOneLevelFilter()">
-                            <mat-icon>add</mat-icon>
-                            <span>Add Filter</span>
-                        </button>
-                        <button mat-menu-item (click)="addMultiplyLevelFilter()">
-                            <mat-icon>library_add</mat-icon>
-                            <span>Add a filter group</span>
-                        </button>
-                    </mat-menu>
-                </div>
-          </form>
-
-
-
-      <div class="form-footer">
-        <button mat-flat-button color="primary"
-          (click)="send()">
-         Send
-        </button>
-      </div>
+        <div>
+            <button (click)="addItemToList()">Add a filter</button>
+        </div>
     </div>
 </div>

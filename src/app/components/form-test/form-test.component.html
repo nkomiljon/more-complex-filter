@@ -1,0 +1,46 @@
+
+
+<div class="container">
+    <form class="form" [formGroup]="form">
+
+        <div formArrayName="complexForm">
+            <div *ngFor="let complex of complexForm.controls; let complexIndex = index;">
+               
+                <div formGroupName="{{ complexIndex }}">
+                   <div formGroupName="oneLevel">
+                        <input type="text" formControlName="column">
+                   </div>
+
+                    <div formArrayName="multiLevel">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <section class="form-bottom">
+            <button mat-button [matMenuTriggerFor]="filter" >
+                    <mat-icon>add</mat-icon>
+                    Add a filter
+            </button>
+            <mat-menu #filter="">
+                <button mat-menu-item (click)="addOneLevelForm()">
+                    <mat-icon>add</mat-icon>
+                    <span>Add Filter</span>
+                </button>
+                <button mat-menu-item (click)="addMultiLevelForm()">
+                    <mat-icon>library_add</mat-icon>
+                    <span>Add a filter group</span>
+                </button>
+            </mat-menu>
+        </section>
+        <footer class="footer">
+            <button mat-flat-button color="primary">
+                Send
+            </button>
+        </footer>
+    </form>
+</div>

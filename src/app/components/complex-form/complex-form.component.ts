@@ -28,4 +28,15 @@ export class ComplexFormComponent implements OnInit {
       list: this.formBuilder.array([])
     })
   }
+
+
+  get list(): FormArray {
+    return this.form.get('list') as FormArray;
+  }
+
+  addItemToList() {
+    this.list.push({
+      value: ['']
+    })
+  }
 }

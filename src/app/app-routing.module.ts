@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './components/form/form.component';
 import { ComplexFormComponent } from './components/complex-form/complex-form.component';
 import {FormsComponent} from "./components/forms/forms.component";
+import { FormTestComponent } from './components/form-test/form-test.component';
 
 const routes: Routes = [
   {
@@ -18,8 +19,12 @@ const routes: Routes = [
     component: FormsComponent
   },
   {
+    path: 'forms-test',
+    component: FormTestComponent
+  },
+  {
     path: '',
-    redirectTo: 'forms',
+    redirectTo: 'forms-test',
     pathMatch: 'full'
   }
 ];
