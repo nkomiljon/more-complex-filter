@@ -41,3 +41,15 @@
         ]
     }    
 ]
+
+"complexForm": [
+    {
+        "complexFormItem": 
+        {
+            "oneLevelFilter": {},
+            "multiLevelFilter": [
+                
+            ]
+        }
+    }
+]

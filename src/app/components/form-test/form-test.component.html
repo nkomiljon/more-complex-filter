@@ -3,24 +3,71 @@
 <div class="container">
     <form class="form" [formGroup]="form">
 
-        <div formArrayName="complexForm">
-            <div *ngFor="let complex of complexForm.controls; let complexIndex = index;">
-               
-                <div formGroupName="{{ complexIndex }}">
-                   <div formGroupName="oneLevel">
-                        <input type="text" formControlName="column">
-                   </div>
+        <div class="complex-form">
+            <div class="one-level">
+                <div class="one-level__inner">
+                    <div class="one-level__item">
+                        <span>Where</span>
+                    </div>
+                    <div class="one-level__item">
+                        <mat-form-field appearance="outline">
+                            <mat-select>
+                                <mat-option></mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="one-level__item">
+                        <mat-form-field appearance="outline">
+                            <mat-select>
+                                <mat-option></mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="one-level__item">
+                    <mat-form-field appearance="outline">
+                        <input type="text" matInput>
+                    </mat-form-field>
+                    </div>
+                </div>
+            </div>
 
-                    <div formArrayName="multiLevel">
-                        
+            <div class="multi-level">
+                <div class="multi-level__inner">
+                    <div class="multi-level__logicOperator">
+                        <div class="item">
+                            <mat-form-field appearance="outline">
+                                <mat-select>
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="multi-level__content">
+                        <div class="item">
+                            <mat-form-field appearance="outline">
+                                <mat-select>
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="item">
+                            <mat-form-field appearance="outline">
+                                <mat-select>
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="item">
+                            <mat-form-field appearance="outline">
+                                <input type="text" matInput>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-
+        
         <section class="form-bottom">
             <button mat-button [matMenuTriggerFor]="filter" >
                     <mat-icon>add</mat-icon>
