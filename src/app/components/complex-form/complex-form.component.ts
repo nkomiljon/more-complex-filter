@@ -18,13 +18,37 @@ export class ComplexFormComponent implements OnInit {
       this.initForm();
   }
 
-  initForm() {
-    this.form = this.formBuilder.group({
+  private oneLevelFilter(): FormGroup {
+    return this.formBuilder.group({
       column: [''],
       operand: [''],
       value: ['']
     })
   }
+
+  private multiplyLevelFilter(): FormGroup {
+    return this.formBuilder.group({
+      condition: [''],
+      column: [''],
+      operand: [''],
+      value: ['']
+    })
+  }
+
+  /// Initialized Form
+  private initForm() {
+    this.form = this.formBuilder.group({
+      oneLevelFilter: this.formBuilder.array([
+        this.oneLevelFilter()
+      ]),
+      multiplyLevelFilter: this.formBuilder.array([
+        this.multiplyLevelFilter()
+      ])
+    });
+  }
+
+
+  
 
 
 

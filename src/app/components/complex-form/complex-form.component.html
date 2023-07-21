@@ -1,7 +1,7 @@
 <div class="container">
     <div class="form">
         <form [formGroup]="form">
-            <div class="">
+            <div formArrayName="oneLevelFilter" class="">
                 <div class="column">
                     <div class="row">
                         <span>Where</span>
@@ -16,6 +16,10 @@
                         <input formControlName="value" type="text">
                     </div>
                 </div>
+            </div>
+
+            <div formArrayName="multiplyLevelFilter">
+
             </div>
             <div>
                 <button (click)="addFilter()">Add filter</button>
