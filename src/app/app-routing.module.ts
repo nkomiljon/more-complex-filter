@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './components/form/form.component';
 import { ComplexFormComponent } from './components/complex-form/complex-form.component';
+import {FormsComponent} from "./components/forms/forms.component";
 
 const routes: Routes = [
   {
@@ -13,8 +14,12 @@ const routes: Routes = [
     component: ComplexFormComponent
   },
   {
+    path: 'forms',
+    component: FormsComponent
+  },
+  {
     path: '',
-    redirectTo: 'form',
+    redirectTo: 'forms',
     pathMatch: 'full'
   }
 ];

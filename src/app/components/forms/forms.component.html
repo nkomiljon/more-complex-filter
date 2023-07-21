@@ -1,0 +1,109 @@
+<div class="container">
+  <h3>Form</h3>
+  <form class="form" [formGroup]="form">
+    <div class="wrapper">
+      <div formArrayName="complexForm" class="complexForm">
+        <div class="wrapper">
+          <div class="multilevelform__item" *ngFor="let formGroup of complexForm.controls; let i = index">
+            <ng-container formGroupName="{{i}}">
+              <div class="row">
+                <div class="condition">
+                  <mat-form-field appearance="outline">
+                    <mat-select formControlName="condition">
+                      <mat-option
+                        *ngFor="let item of [{key: 'and', value: 'And'}, {key: 'or', value: 'Or'}]"
+                        [value]="item.key">
+                        {{ item.value }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="form-content" formArrayName="content">
+                  <div class="wrapper">
+                    <div *ngFor="let form of contentArray(i).controls; let i = index">
+                      <ng-container formGroupName="{{ i }}">
+                        <div class="row">
+                          <span>Where</span>
+                          <div class="item">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="column">
+                                <mat-option></mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div class="item">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="operand">
+                                <mat-option></mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div class="item">
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="value">
+                                <mat-option></mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+
+                          <button mat-icon-button>
+                            <mat-icon>more_horiz</mat-icon>
+                          </button>
+                        </div>
+                      </ng-container>
+                    </div>
+
+                    <footer>
+                      <button mat-button [matMenuTriggerFor]="filter">
+                        Add Filter
+                        <mat-icon>add</mat-icon>
+                      </button>
+                      <mat-menu #filter="">
+                        <button mat-menu-item (click)="addContentFilter(i)">
+                          <mat-icon>filter_alt</mat-icon>
+                          <span>Add Filter</span>
+                        </button>
+                        <button mat-menu-item (click)="addContentFilterGroup(i)">
+                          <mat-icon>filter_list</mat-icon>
+                          <span>Add a filter group</span>
+                        </button>
+                      </mat-menu>
+                    </footer>
+                  </div>
+                </div>
+                <div class="form-content-btn">
+                  <button mat-icon-button>
+                    <mat-icon>more_horiz</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="">
+        <button mat-button [matMenuTriggerFor]="filter" >
+          <mat-icon>add</mat-icon>
+          Add a filter
+          <!-- <mat-icon>keyboard_arrow_down</mat-icon> -->
+        </button>
+        <mat-menu #filter="">
+          <button (click)="addOneLevelForm()" mat-menu-item>
+            <mat-icon>add</mat-icon>
+            <span>Add Filter</span>
+          </button>
+          <button (click)="addMultiplyFilter()" mat-menu-item>
+            <mat-icon>library_add</mat-icon>
+            <span>Add a filter group</span>
+          </button>
+        </mat-menu>
+      </div>
+      <footer class="footer">
+        <button (click)="submit()" mat-flat-button color="primary">
+          Send
+        </button>
+      </footer>
+    </div>
+  </form>
+</div>
