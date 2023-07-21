@@ -13,12 +13,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { ComplexFormComponent } from './components/complex-form/complex-form.component';
+import { FormsComponent } from './components/forms/forms.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
-    ComplexFormComponent
+    ComplexFormComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,

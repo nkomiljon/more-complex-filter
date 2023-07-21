@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {Form, FormArray, FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-complex-form',
@@ -8,54 +8,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ComplexFormComponent implements OnInit {
 
-  form!: FormGroup;
+  public form!: FormGroup;
+  public condition: {key: string; value: string}[] = [
+    {key: 'and', value: 'And'},
+    {key: 'or', value: 'Or'}
+  ];
   constructor(private formBuilder: FormBuilder) {
-    
+
   }
 
 
   ngOnInit(): void {
-      this.initForm();
+    this.initForm();
   }
 
-  private oneLevelFilter(): FormGroup {
-    return this.formBuilder.group({
-      column: [''],
-      operand: [''],
-      value: ['']
-    })
-  }
 
-  private multiplyLevelFilter(): FormGroup {
-    return this.formBuilder.group({
-      condition: [''],
-      column: [''],
-      operand: [''],
-      value: ['']
-    })
-  }
-
-  /// Initialized Form
-  private initForm() {
+  initForm() {
     this.form = this.formBuilder.group({
-      oneLevelFilter: this.formBuilder.array([
-        this.oneLevelFilter()
-      ]),
-      multiplyLevelFilter: this.formBuilder.array([
-        this.multiplyLevelFilter()
-      ])
-    });
+      list: this.formBuilder.array([])
+    })
   }
-
-
-  
-
-
-
-
-  addFilter() {
-    console.log(this.form.value);
-  }
-
-
 }
