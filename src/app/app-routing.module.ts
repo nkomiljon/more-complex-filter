@@ -4,6 +4,7 @@ import { FormComponent } from './components/form/form.component';
 import { ComplexFormComponent } from './components/complex-form/complex-form.component';
 import {FormsComponent} from "./components/forms/forms.component";
 import { FormTestComponent } from './components/form-test/form-test.component';
+import { UiFormComponent } from './forms/ui-form/ui-form.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,12 @@ const routes: Routes = [
     component: FormTestComponent
   },
   {
+    path: 'ui-form',
+    component: UiFormComponent
+  },
+  {
     path: '',
-    redirectTo: 'forms-test',
+    redirectTo: 'ui-form',
     pathMatch: 'full'
   }
 ];

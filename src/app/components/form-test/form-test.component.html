@@ -3,70 +3,135 @@
 <div class="container">
     <form class="form" [formGroup]="form">
 
-        <div class="complex-form">
-            <div class="one-level">
-                <div class="one-level__inner">
-                    <div class="one-level__item">
-                        <span>Where</span>
+        <div formArrayName="complexForm" class="complex-form">
+            <div *ngFor="let formItem of complexForm.controls; let formItemIndex = index">
+                <ng-container formGroupName="{{ formItemIndex }}">
+                    <div formGroupName="oneLevel" class="one-level">
+                        <div class="one-level__inner">
+                            <div class="one-level__item">
+                                <span>Where</span>
+                            </div>
+                            <div class="one-level__item">
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="column">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="one-level__item">
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="operand">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="one-level__item">
+                            <mat-form-field appearance="outline">
+                                <input formControlName="value" type="text" matInput>
+                            </mat-form-field>
+                            </div>
+                        </div>
                     </div>
-                    <div class="one-level__item">
-                        <mat-form-field appearance="outline">
-                            <mat-select>
-                                <mat-option></mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div class="one-level__item">
-                        <mat-form-field appearance="outline">
-                            <mat-select>
-                                <mat-option></mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div class="one-level__item">
-                    <mat-form-field appearance="outline">
-                        <input type="text" matInput>
-                    </mat-form-field>
-                    </div>
-                </div>
-            </div>
 
-            <div class="multi-level">
-                <div class="multi-level__inner">
-                    <div class="multi-level__logicOperator">
-                        <div class="item">
-                            <mat-form-field appearance="outline">
-                                <mat-select>
-                                    <mat-option></mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                    <div formGroupName="multiLevel" class="multi-level">
+                        <div *ngFor="let item of multiLevel(formItemIndex); let i = index">
+                            <ng-container formGroupName="{{ i }}">
+                                <div class="multi-level__inner">
+                                    <div class="multi-level__logicOperator">
+                                        <div class="item">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select formControlName="logicOperator">
+                                                    <mat-option></mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="multi-level__content">
+                                        <div style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;" class="">
+                                            <div class="item">
+                                                <span>Where</span>
+                                            </div>
+                                            <div class="item">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select formControlName="column">
+                                                        <mat-option *ngFor="let i of [1,2,3,4]"
+                                                        [value]="i">
+                                                            {{ i }}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="item">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select formControlName="operand">
+                                                        <mat-option *ngFor="let i of [1,2,3,4]"
+                                                        [value]="i">
+                                                            {{ i }}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="item">
+                                                <mat-form-field appearance="outline">
+                                                    <input formControlName="value" type="text" matInput>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                            <div style="background-color: #f8e0e0;">
+                                                <div style="display: flex; flex-direction: row;">
+                                                    <ng-container >
+                                                        <div >
+                                                            <div>
+                                                                <div class="one-level__item">
+                                                                    <span>Where</span>
+                                                                </div>
+                                                                <div class="one-level__item">
+                                                                    <mat-form-field appearance="outline">
+                                                                        <mat-select formControlName="column">
+                                                                            <mat-option></mat-option>
+                                                                        </mat-select>
+                                                                    </mat-form-field>
+                                                                </div>
+                                                                <div class="one-level__item">
+                                                                    <mat-form-field appearance="outline">
+                                                                        <mat-select formControlName="operand">
+                                                                            <mat-option></mat-option>
+                                                                        </mat-select>
+                                                                    </mat-form-field>
+                                                                </div>
+                                                                <div class="one-level__item">
+                                                                <mat-form-field appearance="outline">
+                                                                    <input formControlName="value" type="text" matInput>
+                                                                </mat-form-field>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        <footer>
+                                                <button mat-button [matMenuTriggerFor]="filter">
+                                                Add Filter
+                                                <mat-icon>add</mat-icon>
+                                                </button>
+                                                <mat-menu #filter="">
+                                                <button mat-menu-item (click)="addContent()">
+                                                    <mat-icon>filter_alt</mat-icon>
+                                                    <span>Add Filter</span>
+                                                </button>
+                                                <button mat-menu-item>
+                                                    <mat-icon>filter_list</mat-icon>
+                                                    <span>Add a filter group</span>
+                                                </button>
+                                                </mat-menu>
+                                        </footer>
+                                    </div>         
+                                </div>
+                            </ng-container>
                         </div>
+            
                     </div>
-                    <div class="multi-level__content">
-                        <div class="item">
-                            <span>Where</span>
-                        </div>
-                        <div class="item">
-                            <mat-form-field appearance="outline">
-                                <mat-select>
-                                    <mat-option></mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="item">
-                            <mat-form-field appearance="outline">
-                                <mat-select>
-                                    <mat-option></mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="item">
-                            <mat-form-field appearance="outline">
-                                <input type="text" matInput>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
+                </ng-container>
             </div>
         </div>
 
@@ -88,7 +153,7 @@
             </mat-menu>
         </section>
         <footer class="footer">
-            <button mat-flat-button color="primary">
+            <button (click)="send()" mat-flat-button color="primary">
                 Send
             </button>
         </footer>

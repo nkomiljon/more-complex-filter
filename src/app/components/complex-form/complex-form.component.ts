@@ -34,6 +34,10 @@ export class ComplexFormComponent implements OnInit {
     return this.form.get('list') as FormArray;
   }
 
+  get multiLevel(): FormArray {
+    return this.list.get('multiLevel') as FormArray;
+  }
+
   addItemToList() {
     this.list.push({
       value: ['']

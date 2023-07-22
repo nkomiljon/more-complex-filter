@@ -15,6 +15,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ComplexFormComponent } from './components/complex-form/complex-form.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { FormTestComponent } from './components/form-test/form-test.component';
+import { UiFormComponent } from './forms/ui-form/ui-form.component';
+import { AddFilterComponent } from './forms/add-filter/add-filter.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { FormTestComponent } from './components/form-test/form-test.component';
     FormComponent,
     ComplexFormComponent,
     FormsComponent,
-    FormTestComponent
+    FormTestComponent,
+    UiFormComponent,
+    AddFilterComponent
   ],
   imports: [
     BrowserModule,

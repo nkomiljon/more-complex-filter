@@ -1,0 +1,179 @@
+<div class="container">
+    <div style="max-width: 1020px;padding: 20px;margin: 0 auto;" class="">
+        <form [formGroup]="form" class="form">
+            <main class="first-layer">
+                <div class="layer-inner">
+                    <div class="layer-top">
+                        <div class="layer-top__element">
+                            <span>Where</span>
+                        </div>
+                        <div class="layer-top__element">
+                            <mat-form-field appearance="outline">
+                                <mat-select>
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="layer-top__element">
+                            <mat-form-field appearance="outline">
+                                <mat-select>
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="layer-top__element">
+                            <mat-form-field appearance="outline">
+                                <input type="text" matInput>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="layer-content">
+                        <div class="layer-content__inner">
+                            <div class="logic">
+                                <mat-form-field appearance="outline">
+                                    <mat-select>
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <main class="second-layer">
+                                <div class="layer-inner">
+                                    <div class="layer-top">
+                                        <div class="layer-top__element">
+                                            <span>Where</span>
+                                        </div>
+                                        <div class="layer-top__element">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select>
+                                                    <mat-option></mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="layer-top__element">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select>
+                                                    <mat-option></mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="layer-top__element">
+                                            <mat-form-field appearance="outline">
+                                                <input type="text" matInput>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="layer-content">
+                                        <div class="layer-content__inner">
+                                            <div class="logic">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-select>
+                                                        <mat-option></mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+
+                                            <main class="thrid-layer">
+                                                <div class="layer-inner">
+
+                                                    <div class="layer-top">
+                                                        <div class="layer-top__element">
+                                                            <span>Where</span>
+                                                        </div>
+                                                        <div class="layer-top__element">
+                                                            <mat-form-field appearance="outline">
+                                                                <mat-select>
+                                                                    <mat-option></mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="layer-top__element">
+                                                            <mat-form-field appearance="outline">
+                                                                <mat-select>
+                                                                    <mat-option></mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="layer-top__element">
+                                                            <mat-form-field appearance="outline">
+                                                                <input type="text" matInput>
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="layer-content">
+
+                                                    </div>
+                                                    
+                                                    <section class="layer-add">
+                                                        <button mat-button [matMenuTriggerFor]="filter" >
+                                                            <mat-icon>add</mat-icon>
+                                                            Add a filter
+                                                        </button>
+                                                            <mat-menu #filter="">
+                                                                <button mat-menu-item>
+                                                                    <mat-icon>add</mat-icon>
+                                                                    <span>Add Filter</span>
+                                                                </button>
+                                                                <button mat-menu-item >
+                                                                    <mat-icon>library_add</mat-icon>
+                                                                    <span>Add a filter group</span>
+                                                                </button>
+                                                            </mat-menu>
+                                                    </section>
+                                                </div>
+                                            </main>
+                                        </div>
+                                    </div>
+
+                                    <section class="layer-add">
+                                        <button mat-button [matMenuTriggerFor]="filter" >
+                                            <mat-icon>add</mat-icon>
+                                            Add a filter
+                                        </button>
+                                            <mat-menu #filter="">
+                                                <button mat-menu-item>
+                                                    <mat-icon>add</mat-icon>
+                                                    <span>Add Filter</span>
+                                                </button>
+                                                <button mat-menu-item >
+                                                    <mat-icon>library_add</mat-icon>
+                                                    <span>Add a filter group</span>
+                                                </button>
+                                            </mat-menu>
+                                    </section>
+                                </div>
+
+                            </main>
+                        </div>
+                    </div>
+
+                    <section class="layer-add">
+                        <button mat-button [matMenuTriggerFor]="filter" >
+                            <mat-icon>add</mat-icon>
+                            Add a filter
+                        </button>
+                            <mat-menu #filter="">
+                                <button mat-menu-item>
+                                    <mat-icon>add</mat-icon>
+                                    <span>Add Filter</span>
+                                </button>
+                                <button mat-menu-item >
+                                    <mat-icon>library_add</mat-icon>
+                                    <span>Add a filter group</span>
+                                </button>
+                            </mat-menu>
+                    </section>
+                </div>
+            </main>
+        
+        </form>
+
+        <section class="form-send">
+            <button mat-flat-button color="primary">
+                Send
+            </button>
+        </section>
+    </div>
+</div>
