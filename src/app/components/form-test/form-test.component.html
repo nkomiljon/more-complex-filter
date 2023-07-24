@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    <div formGroupName="multiLevel" class="multi-level">
+                    <div formArrayName="multiLevel" class="multi-level">
                         <div *ngFor="let item of multiLevel(formItemIndex); let i = index">
                             <ng-container formGroupName="{{ i }}">
                                 <div class="multi-level__inner">
