@@ -1,0 +1,130 @@
+
+<div class="container">
+
+    <div class="nested-component">
+        <ng-container
+        [ngTemplateOutlet]="loopList"
+        [ngTemplateOutletContext]="{
+            filtersForm,
+            columns,
+            comparatives,
+            logicOperators
+        }"
+        ></ng-container>
+    
+        <div>
+        <pre>{{ filtersForm.getRawValue() | json }}</pre>
+        </div>
+    </div>
+    
+    <ng-template
+        #loopList
+        let-filtersForm="filtersForm"
+        let-columns="columns"
+        let-comparatives="comparatives"
+        let-logicOperators="logicOperators"
+    >
+        <div class="form-group" [formGroup]="filtersForm">
+            <ng-container
+                *ngFor="let item of getList(filtersForm); let i = index">
+
+                    <ng-container formArrayName="list">
+                        <ng-container *ngIf="item.get('column')">
+                          
+
+                            <div class="form-group__wrapper">
+                                <div class="form-section" [formGroupName]="i">
+                                    <!-- <div *ngIf="i === 0" class="form-section__instruction">Where</div> -->
+                                    <!-- <div *ngIf="i === 1" class="form-section__instruction"> -->
+                                    <!-- <mat-form-field appearance="outline">
+                                        <mat-select
+                                        formControlName="logicOperator"
+                                        (change)="changeLogicOperator(filtersForm, $event)"
+                                        >
+                                            <mat-option
+                                                *ngFor="let operator of logicOperators"
+                                                [value]="operator.toLowerCase()"
+                                            >
+                                                {{ operator.toUpperCase() }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>     -->
+                                    <!-- </div> -->
+                                    <!-- <div *ngIf="i > 1" class="form-section__instruction">
+                                    {{ item.get('logicOperator')?.value }}
+                                    </div> -->
+                                
+                                    <ng-container >
+                                        <mat-form-field appearance="outline">
+                                            <mat-select formControlName="column">
+                                                <mat-option *ngFor="let column of columns" (value)="(column)">
+                                                {{ column }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline">
+                                            <mat-select formControlName="comparative">
+                                                <mat-option
+                                                *ngFor="let comparative of comparatives"
+                                                (value)="(comparative)"
+                                                >
+                                                {{ comparative }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline">
+                                            <input matInput type="text" formControlName="value" placeholder="Value" />
+                                        </mat-form-field>
+
+                                        <button mat-icon-button [matMenuTriggerFor]="filter"> 
+                                            <mat-icon>more_horiz</mat-icon>
+                                        </button>
+                    
+                                        <mat-menu #filter="">
+                                            <button mat-menu-item (click)="removeItem(filtersForm, i)">
+                                                <mat-icon>delete</mat-icon>
+                                                <span>Delete</span>
+                                            </button>
+                                        </mat-menu>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                
+                    <ng-container *ngIf="item.get('list')?.getRawValue().length">
+                        <ng-template
+                                *ngTemplateOutlet="
+                            loopList;
+                            context: {
+                                filtersForm: item,
+                                columns: this.columns,
+                                comparatives: this.comparatives,
+                                logicOperators: this.logicOperators
+                            }
+                            "
+                        ></ng-template>
+                    </ng-container>
+                </ng-container>
+        
+            <div class="form-group__actions">
+                <section class="layer-add">
+                    <button mat-button [matMenuTriggerFor]="filter" >
+                        <mat-icon>add</mat-icon>
+                        Add a filter
+                    </button>
+                        <mat-menu #filter="">
+                            <button mat-menu-item (click)="addItem(filtersForm)">
+                                <mat-icon>add</mat-icon>
+                                <span>Add Filter</span>
+                            </button>
+                            <button mat-menu-item (click)="addGroup(filtersForm)">
+                                <mat-icon>library_add</mat-icon>
+                                <span>Add a filter group</span>
+                            </button>
+                        </mat-menu>
+                </section> 
+            </div>
+        </div>
+    </ng-template>
+  </div>

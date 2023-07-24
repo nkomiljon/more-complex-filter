@@ -3,7 +3,7 @@
         <form [formGroup]="form" class="form">
             <main formArrayName="firstLayer" class="first-layer">
                 <div class="layer-inner"
-                     *ngFor="let first of firstLayer.controls; 
+                     *ngFor="let first of firstLayer().controls; 
                              let firstLayerIndex = index">
                     
                     <ng-container formGroupName="{{ firstLayerIndex }}">
@@ -34,7 +34,8 @@
 
                         <div formArrayName="firstLayerContent" class="layer-content">
                             <div class="layer-content__inner" 
-                                *ngFor="let lc of firstLayerContent(firstLayerIndex).controls; let i = index;">
+                                *ngFor="let flc of firstLayerContent(firstLayerIndex).controls; 
+                                        let i = index;">
                                 <ng-container formGroupName="{{ i }}">
                                     <div class="logic">
                                         <mat-form-field appearance="outline">

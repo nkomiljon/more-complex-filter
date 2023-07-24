@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-ui-form',
@@ -10,6 +10,7 @@ export class UiFormComponent implements OnInit {
 
   form!:FormGroup;
   counter: number = 0;
+  fc!: FormArray;
   constructor(private formBuilder: FormBuilder) {
     
   }
@@ -25,13 +26,13 @@ export class UiFormComponent implements OnInit {
     })
   }
 
-  get firstLayer(): FormArray {
+  firstLayer(): FormArray {
     return this.form.get('firstLayer') as FormArray
   }
 
   firstLayerContent(index: number): FormArray {
-    console.log(this.firstLayer.at(index).get('firstLayerContent') as FormArray);
-    return this.firstLayer.at(index).get('firstLayerContent') as FormArray;
+    this.fc = this.firstLayer().at(index).get('firstLayerContent') as FormArray;
+    return this.firstLayer().at(index).get('firstLayerContent') as FormArray;
   }
 
 
@@ -48,7 +49,7 @@ export class UiFormComponent implements OnInit {
   }
 
   addOneLayer() {
-    this.firstLayer.push(
+    this.firstLayer().push(
       this.formBuilder.group({
         column: [''],
         operand: [''],
@@ -62,12 +63,12 @@ export class UiFormComponent implements OnInit {
   }
 
   addMultiLayer() {
-    console.log('first layer', this.firstLayer);
+   //console.log('first layer', this.firstLayer);
     
     console.log(this.firstLayerContent(this.counter));
-    console.log(this.firstLayer.controls);
+    console.log(this.firstLayer().controls);
     
-    this.firstLayerContent(this.counter)
+    this.fc
       .push(this.formBuilder.group({
         logicOperator: [''],
         secondLayer: this.formBuilder.array([

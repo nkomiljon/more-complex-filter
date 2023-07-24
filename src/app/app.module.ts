@@ -17,6 +17,7 @@ import { FormsComponent } from './components/forms/forms.component';
 import { FormTestComponent } from './components/form-test/form-test.component';
 import { UiFormComponent } from './forms/ui-form/ui-form.component';
 import { AddFilterComponent } from './forms/add-filter/add-filter.component';
+import { FormWithRecComponent } from './forms/form-with-rec/form-with-rec.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AddFilterComponent } from './forms/add-filter/add-filter.component';
     FormsComponent,
     FormTestComponent,
     UiFormComponent,
-    AddFilterComponent
+    AddFilterComponent,
+    FormWithRecComponent
   ],
   imports: [
     BrowserModule,

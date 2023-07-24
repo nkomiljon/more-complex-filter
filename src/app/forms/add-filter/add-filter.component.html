@@ -1,1 +1,121 @@
-<p>add-filter works!</p>
+<div class="container">
+    <div style="max-width: 1020px;padding: 20px;margin: 0 auto;" class="">
+       
+        <ng-container *ngTemplateOutlet="formList; context: {form, columns, operands, logicOperators}">
+
+        </ng-container>
+        
+        <!--  -->
+        <ng-template 
+            #formList
+            let-form="form"
+            let-columns="columns"
+            let-operands="operands"
+            let-logicOperators="logicOperators"
+            >
+                <form [formGroup]="form">
+                    <div *ngFor="let firstLayerContent of getFirstLayerList(form); let i = index"
+                     formArrayName="firstLayer">
+                    
+                            <ng-container *ngIf="firstLayerContent.get('column')">
+                                <div style="padding: 10px; border-radius: 6px; border: 1px solid;">
+                                    <ng-container formGroupName="{{ i }}">
+                                        <div *ngIf="i === 0">Where</div>
+                                        <div *ngIf="i === 1">
+                                            <mat-form-field appearance="outline">
+                                                <mat-select formControlName="logicOperator">
+                                                    <mat-option *ngFor="let item of logicOperators">
+                                                        {{ item.value }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div *ngIf="i > 1">
+                                            {{ firstLayerContent.get('logicOperator')?.value }}
+                                        </div>
+
+                                        <mat-form-field appearance="outline">
+                                            <mat-select formControlName="column">
+                                                <mat-option *ngFor="let column of columns">{{ column }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="outline">
+                                            <mat-select formControlName="operand">
+                                                <mat-option *ngFor="let operand of operands">{{ operand }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="outline">
+                                           <input formControlName="value" matInput type="text">
+                                        </mat-form-field>
+                                        <button mat-icon-button>
+                                            <mat-icon></mat-icon>
+                                        </button>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="firstLayerContent.get('firstLayer')?.getRawValue().length">
+                                <ng-template
+                                    *ngTemplateOutlet="
+                                        formList; 
+                                        context: {
+                                            form: firstLayerContent,
+                                            columns: this.columns,
+                                            operands: this.operands,
+                                            logicOperators: this.logicOperators
+                                        }">
+
+                                </ng-template>
+                            </ng-container>
+                    </div>
+                    
+                
+                     <section class="layer-add">
+                        <button mat-button [matMenuTriggerFor]="filter" >
+                            <mat-icon>add</mat-icon>
+                            Add a filter
+                        </button>
+                            <mat-menu #filter="">
+                                <button mat-menu-item (click)="addItem(form)">
+                                    <mat-icon>add</mat-icon>
+                                    <span>Add Filter</span>
+                                </button>
+                                <button mat-menu-item (click)="addGroup(form)">
+                                    <mat-icon>library_add</mat-icon>
+                                    <span>Add a filter group</span>
+                                </button>
+                            </mat-menu>
+                    </section> 
+                </form>
+
+                <!-- <section class="layer-add">
+                    <button mat-button [matMenuTriggerFor]="filter" >
+                        <mat-icon>add</mat-icon>
+                        Add a filter
+                    </button>
+                        <mat-menu #filter="">
+                            <button mat-menu-item (click)="addItem(form)">
+                                <mat-icon>add</mat-icon>
+                                <span>Add Filter</span>
+                            </button>
+                            <button mat-menu-item (click)="addGroup(form)">
+                                <mat-icon>library_add</mat-icon>
+                                <span>Add a filter group</span>
+                            </button>
+                        </mat-menu>
+                </section> -->
+        </ng-template>
+
+   
+
+        <section class="form-send">
+            <button mat-flat-button 
+                    color="primary"
+                    (click)="send()">
+                Send
+            </button>
+        </section>
+    </div>
+</div>

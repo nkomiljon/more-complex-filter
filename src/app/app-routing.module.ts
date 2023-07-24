@@ -5,6 +5,8 @@ import { ComplexFormComponent } from './components/complex-form/complex-form.com
 import {FormsComponent} from "./components/forms/forms.component";
 import { FormTestComponent } from './components/form-test/form-test.component';
 import { UiFormComponent } from './forms/ui-form/ui-form.component';
+import { AddFilterComponent } from './forms/add-filter/add-filter.component';
+import { FormWithRecComponent } from './forms/form-with-rec/form-with-rec.component';
 
 const routes: Routes = [
   {
@@ -28,8 +30,16 @@ const routes: Routes = [
     component: UiFormComponent
   },
   {
+    path: 'add-filter',
+    component: AddFilterComponent
+  },
+  {
+    path: 'recursiv',
+    component: FormWithRecComponent
+  },
+  {
     path: '',
-    redirectTo: 'ui-form',
+    redirectTo: 'recursiv',
     pathMatch: 'full'
   }
 ];
