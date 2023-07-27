@@ -1,96 +1,86 @@
 <div class="container">
     <div style="max-width: 1020px;padding: 20px;margin: 0 auto;" class="">
-        <form [formGroup]="form" class="form">
-            <main formArrayName="firstLayer" class="first-layer">
-                <div class="layer-inner"
-                     *ngFor="let first of firstLayer().controls; 
-                             let firstLayerIndex = index">
+        <form class="form">
+            <main  class="first-layer">
+                <div class="layer-inner">
                     
-                    <ng-container formGroupName="{{ firstLayerIndex }}">
+                
                         <div class="layer-top">
                             <div class="layer-top__element">
                                 <span>Where</span>
                             </div>
                             <div class="layer-top__element">
                                 <mat-form-field appearance="outline">
-                                    <mat-select formControlName="column">
+                                    <mat-select>
                                         <mat-option></mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="layer-top__element">
                                 <mat-form-field appearance="outline">
-                                    <mat-select formControlName="operand">
+                                    <mat-select>
                                         <mat-option></mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="layer-top__element">
                                 <mat-form-field appearance="outline">
-                                    <input formControlName="value" type="text" matInput>
+                                    <input type="text" matInput>
                                 </mat-form-field>
                             </div>
                         </div>
 
-                        <div formArrayName="firstLayerContent" class="layer-content">
-                            <div class="layer-content__inner" 
-                                *ngFor="let flc of firstLayerContent(firstLayerIndex).controls; 
-                                        let i = index;">
-                                <ng-container formGroupName="{{ i }}">
+                        <div class="layer-content">
+                            <div class="layer-content__inner">
                                     <div class="logic">
                                         <mat-form-field appearance="outline">
-                                            <mat-select formControlName="logicOperator">
+                                            <mat-select>
                                                 <mat-option></mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
-                                    <main formArrayName="secondLayer" class="second-layer">
+                                    <main class="second-layer">
                                         <div class="layer-inner"
-                                            *ngFor="let secondForm of secondLayer(i).controls; let secondLayerIndex = index">
-                                            <ng-container formGroupName="{{ secondLayerIndex }}">
+                                            >
                                                 <div class="layer-top">
                                                     <div class="layer-top__element">
                                                         <span>Where</span>
                                                     </div>
                                                     <div class="layer-top__element">
                                                         <mat-form-field appearance="outline">
-                                                            <mat-select formControlName="column">
+                                                            <mat-select >
                                                                 <mat-option></mat-option>
                                                             </mat-select>
                                                         </mat-form-field>
                                                     </div>
                                                     <div class="layer-top__element">
                                                         <mat-form-field appearance="outline">
-                                                            <mat-select formControlName="operand">
+                                                            <mat-select >
                                                                 <mat-option></mat-option>
                                                             </mat-select>
                                                         </mat-form-field>
                                                     </div>
                                                     <div class="layer-top__element">
                                                         <mat-form-field appearance="outline">
-                                                            <input formControlName="value" type="text" matInput>
+                                                            <input type="text" matInput>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
 
-                                                <div formArrayName="secondLayerContent" class="layer-content">
-                                                    <div class="layer-content__inner"
-                                                         *ngFor="let slc of secondLayerContent(secondLayerIndex).controls;
-                                                                let secondLayerContentIndex = index">
-                                                        <ng-container formGroupName="{{ secondLayerContentIndex }}">
+                                                <div class="layer-content">
+                                                    <div class="layer-content__inner">
+                                                       
                                                             <div class="logic">
                                                                 <mat-form-field appearance="outline">
-                                                                    <mat-select formControlName="logicOperator">
+                                                                    <mat-select >
                                                                         <mat-option></mat-option>
                                                                     </mat-select>
                                                                 </mat-form-field>
                                                             </div>
 
-                                                            <main formArrayName="thridLayer" class="thrid-layer">
-                                                                <div class="layer-inner"
-                                                                     *ngFor="let thLayer of thridLayer(secondLayerContentIndex).controls;
-                                                                        let thridLayerIndex = index">
-                                                                    <ng-container formGroupName="{{ thridLayerIndex }}">
+                                                            <main class="thrid-layer">
+                                                                <div class="layer-inner">
+                                                                    
                                                                         <div class="layer-top">
                                                                             <div class="layer-top__element">
                                                                                 <span>Where</span>
@@ -119,7 +109,6 @@
                                                                         <div class="layer-content">
 
                                                                         </div>
-                                                                    </ng-container>
 
                                                                     <section class="layer-add">
                                                                         <button mat-button [matMenuTriggerFor]="filter" >
@@ -139,10 +128,8 @@
                                                                     </section>
                                                                 </div>
                                                             </main>
-                                                        </ng-container>
                                                     </div>
                                                 </div>
-                                            </ng-container>
 
                                         </div>
 
@@ -152,41 +139,37 @@
                                                 Add a filter
                                             </button>
                                                 <mat-menu #filter="">
-                                                    <button (click)="addSecondOneLayer()" mat-menu-item>
+                                                    <button mat-menu-item>
                                                         <mat-icon>add</mat-icon>
                                                         <span>Add Filter</span>
                                                     </button>
-                                                    <button (click)="addSecondMultiLayer()" mat-menu-item >
+                                                    <button  mat-menu-item >
                                                         <mat-icon>library_add</mat-icon>
                                                         <span>Add a filter group</span>
                                                     </button>
                                                 </mat-menu>
                                         </section>
                                     </main>
-                                </ng-container>
                             </div>
                         </div>
-                    </ng-container>
-                    
-                </div>
-                <section class="layer-add">
-                    <button mat-button [matMenuTriggerFor]="filter" >
-                        <mat-icon>add</mat-icon>
-                        Add a filter
-                    </button>
-                        <mat-menu #filter="">
-                            <button mat-menu-item (click)="addOneLayer()">
+                        <section class="layer-add">
+                            <button mat-button [matMenuTriggerFor]="filter" >
                                 <mat-icon>add</mat-icon>
-                                <span>Add Filter</span>
+                                Add a filter
                             </button>
-                            <button mat-menu-item (click)="addMultiLayer()">
-                                <mat-icon>library_add</mat-icon>
-                                <span>Add a filter group</span>
-                            </button>
-                        </mat-menu>
-                </section>
+                                <mat-menu #filter="">
+                                    <button mat-menu-item >
+                                        <mat-icon>add</mat-icon>
+                                        <span>Add Filter</span>
+                                    </button>
+                                    <button mat-menu-item >
+                                        <mat-icon>library_add</mat-icon>
+                                        <span>Add a filter group</span>
+                                    </button>
+                                </mat-menu>
+                        </section>
+                 </div>
             </main>
-        
         </form>
 
         <section class="form-send">

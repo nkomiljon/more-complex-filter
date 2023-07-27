@@ -7,6 +7,10 @@ import { FormTestComponent } from './components/form-test/form-test.component';
 import { UiFormComponent } from './forms/ui-form/ui-form.component';
 import { AddFilterComponent } from './forms/add-filter/add-filter.component';
 import { FormWithRecComponent } from './forms/form-with-rec/form-with-rec.component';
+import { RecursionFormComponent } from './forms/recursion-form/recursion-form.component';
+import { FormTwoComponent } from './forms/form-two/form-two.component';
+import { MyFormComponent } from './forms/my-form/my-form.component';
+import { McfUiComponent } from './forms/mcf-ui/mcf-ui.component';
 
 const routes: Routes = [
   {
@@ -38,8 +42,24 @@ const routes: Routes = [
     component: FormWithRecComponent
   },
   {
+    path: 'recursion-form',
+    component: RecursionFormComponent
+  },
+  {
+    path: 'form-two',
+    component: FormTwoComponent
+  },
+  {
+    path: 'my-form',
+    component: MyFormComponent
+  },
+  {
+    path: 'mcf-ui',
+    component: McfUiComponent
+  },
+  {
     path: '',
-    redirectTo: 'recursiv',
+    redirectTo: 'mcf-ui',
     pathMatch: 'full'
   }
 ];

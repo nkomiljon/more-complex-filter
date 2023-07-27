@@ -1,0 +1,26 @@
+.form-group {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0 10px;
+    border-radius: 6px;
+  }
+  
+  .form-group__wrapper {
+    display: flex;
+    padding-top: 10px;
+  }
+  
+  .form-group__actions {
+    padding: 10px 0;
+  }
+  
+  .form-operator {
+    min-width: 50px;
+    text-align: right;
+    padding-right: 10px;
+  }
+  
+  .form-content__section {
+    display: flex;
+    gap: 10px;
+  }
+  

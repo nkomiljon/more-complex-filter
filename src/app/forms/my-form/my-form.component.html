@@ -1,0 +1,238 @@
+
+<div class="container">
+
+    <form [formGroup]="form">
+        <div formArrayName="layer">
+            <div *ngFor="let layer of layers(); 
+                    let layerIndex = index;" 
+                    class="layer">
+               
+
+                <ng-container formGroupName="{{ layerIndex }}">
+                    <div style="background-color: #c3c3c3; padding: 10px;border-radius: 5px;">
+                        <div class="form-top" style="display: flex; flex-direction: row;">
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="logicOperator">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="column">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="operator">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="value">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="">
+                        <ng-container
+                            [ngTemplateOutlet]="myForm"
+                            [ngTemplateOutletContext]="{ $implicit: layer }"
+                        >
+                        </ng-container>
+                    </div>
+
+                </ng-container>
+
+                
+                    
+            
+            </div>
+            <section class="layer-add">
+                <button mat-button [matMenuTriggerFor]="filter" >
+                    <mat-icon>add</mat-icon>
+                    Add a filter
+                </button>
+                    <mat-menu #filter="">
+                        <button (click)="addItem()" mat-menu-item >
+                            <mat-icon>add</mat-icon>
+                            <span>Add Filter</span>
+                        </button>
+                        <button (click)="addGroup()" mat-menu-item >
+                            <mat-icon>library_add</mat-icon>
+                            <span>Add a filter group</span>
+                        </button>
+                    </mat-menu>
+            </section> 
+        </div>
+    </form>
+
+
+    <ng-template #myForm let-from>
+        <span>group form</span>
+        <!-- <div formArrayName="layer">
+            <div *ngFor="let layer of layers(); 
+                    let layerIndex = index;" 
+                    class="layer">
+               
+
+                <ng-container formGroupName="{{ layerIndex }}">
+
+                    <div class="form-top" style="display: flex; flex-direction: row; background-color: #f8eeee; padding: 10px;border-radius: 5px;">
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-select formControlName="logicOperator">
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-select formControlName="column">
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-select formControlName="operator">
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-select formControlName="value">
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+            <section class="layer-add">
+                <button mat-button [matMenuTriggerFor]="filter" >
+                    <mat-icon>add</mat-icon>
+                    Add a filter
+                </button>
+                    <mat-menu #filter="">
+                        <button (click)="addItem()" mat-menu-item >
+                            <mat-icon>add</mat-icon>
+                            <span>Add Filter</span>
+                        </button>
+                        <button (click)="addGroup()" mat-menu-item >
+                            <mat-icon>library_add</mat-icon>
+                            <span>Add a filter group</span>
+                        </button>
+                    </mat-menu>
+            </section> 
+        </div> -->
+    </ng-template>
+
+</div>
+
+
+<pre>{{ form.getRawValue() | json }}</pre>
+
+
+
+
+
+
+<!-- 
+<div class="container">
+
+    <form [formGroup]="form">
+        <div formArrayName="layer">
+            <div *ngFor="let layer of layers(); 
+                    let layerIndex = index;" 
+                    class="layer">
+
+                <ng-container formGroupName="{{ layerIndex }}">
+
+                    <div class="form-top">
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-select formControlName="column">
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-select formControlName="operator">
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-select formControlName="value">
+                                    <mat-option></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div formArrayName="layer" class="form-content">
+                    
+                    <div *ngFor="let formLayer of layers(); let i = index">
+                        <ng-container formGroupName="{{ i }}">
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="column">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="operator">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="value">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                </div> 
+
+
+            </div>
+        </div>
+    </form>
+
+    <section class="layer-add">
+        <button mat-button [matMenuTriggerFor]="filter" >
+            <mat-icon>add</mat-icon>
+            Add a filter
+        </button>
+            <mat-menu #filter="">
+                <button (click)="addItem()" mat-menu-item >
+                    <mat-icon>add</mat-icon>
+                    <span>Add Filter</span>
+                </button>
+                <button (click)="addGroup()" mat-menu-item >
+                    <mat-icon>library_add</mat-icon>
+                    <span>Add a filter group</span>
+                </button>
+            </mat-menu>
+    </section> 
+</div> -->

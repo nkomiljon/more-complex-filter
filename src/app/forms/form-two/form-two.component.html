@@ -1,0 +1,110 @@
+
+
+
+
+<div class="container">
+  <div class="wrapper">
+    <ng-container [ngTemplateOutlet]="loopForm" [ngTemplateOutletContext]="{ $implicit: form }">
+    </ng-container>
+  </div>
+
+
+  <pre>
+    {{ form.getRawValue() | json }}
+  </pre>
+</div>
+
+
+<ng-template #loopForm let-form>
+  
+    <form class="form" [formGroup]="form">
+        <div class="" *ngFor="let item of getLayers(form); let i = index" >
+
+          <div class="">
+            <div class="layer">
+              <div class="">
+                <div *ngIf="i > 1">
+                  {{ form.get('logicOperator').value }}
+                </div>
+                <div class="layer-top__element" *ngIf="i === 1">
+                  <mat-form-field appearance="outline">
+                    <mat-select formControlName="logicOperator">
+                      <mat-option></mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+        
+                <div *ngIf="i === 0">
+                  <span>Where</span>
+                </div>
+              </div>
+
+              <div class="" formArrayName="layer">
+                <div formGroupName="{{ i }}">
+                  <div class="">
+                    <ng-container *ngIf="item.get('column')">
+                        <div >
+                          <div>
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="column">
+                                <mat-option></mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div>
+                            <mat-form-field appearance="outline">
+                              <mat-select formControlName="operator">
+                                <mat-option></mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div>
+                            <mat-form-field appearance="outline">
+                              <input formControlName="value" matInput type="text">
+                            </mat-form-field>
+                          </div>
+
+                            <button mat-icon-button [matMenuTriggerFor]="delete">
+                              <mat-icon>more_horiz</mat-icon>
+                            </button>
+                            <mat-menu #delete="">
+                              <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Delete</span>
+                              </button>
+                            </mat-menu>
+                        </div>      
+                    </ng-container>
+        
+                    <ng-container *ngIf="item.get('layer')">
+                      <ng-template [ngTemplateOutlet]="loopForm" 
+                                  [ngTemplateOutletContext]="{ $implicit: item }">
+                      </ng-template>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div>
+          <section class="layer-add">
+            <button mat-button [matMenuTriggerFor]="filter">
+              <mat-icon>add</mat-icon>
+              Add a filter
+            </button>
+            <mat-menu #filter="">
+              <button (click)="addItem(form)" mat-menu-item>
+                <mat-icon>add</mat-icon>
+                <span>Add Filter</span>
+              </button>
+              <button (click)="addGroup(form)" mat-menu-item>
+                <mat-icon>library_add</mat-icon>
+                <span>Add a filter group</span>
+              </button>
+            </mat-menu>
+          </section>
+        </div>
+    </form>
+</ng-template>

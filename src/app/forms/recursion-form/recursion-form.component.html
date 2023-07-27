@@ -1,0 +1,72 @@
+
+<div class="container">
+    <form class="form" [formGroup]="form">
+
+        <div formArrayName="layer">
+            <div *ngFor="let layerItem of layers(); let i = index;">
+                <ng-container formGroupName="{{ i }}">
+                    <div class="form-top">
+                        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span>Where</span>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="column">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="operator">
+                                        <mat-option></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <input formControlName="value" matInput type="text">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div formArrayName="layerContent" class="form-content">
+
+                        <ng-container 
+                            *ngTemplateOutlet="loopContent; 
+                            context: {}">
+
+                        </ng-container>
+                    </div>
+                </ng-container>
+
+
+                <ng-template
+                    #loopContent
+                    let-logicOperator=""
+                    let-layerContent="">
+
+                </ng-template>
+            </div>
+        </div>
+
+        <section class="layer-add">
+            <button mat-button [matMenuTriggerFor]="filter" >
+                <mat-icon>add</mat-icon>
+                Add a filter
+            </button>
+                <mat-menu #filter="">
+                    <button (click)="addItem(form)" mat-menu-item >
+                        <mat-icon>add</mat-icon>
+                        <span>Add Filter</span>
+                    </button>
+                    <button (click)="addGroup(form)" mat-menu-item >
+                        <mat-icon>library_add</mat-icon>
+                        <span>Add a filter group</span>
+                    </button>
+                </mat-menu>
+        </section> 
+    </form>
+</div>

@@ -1,0 +1,107 @@
+<div class="nested-component">
+    <ng-container
+      [ngTemplateOutlet]="loopList"
+      [ngTemplateOutletContext]="{
+        filtersForm,
+        columns,
+        comparatives,
+        logicOperators,
+        level: 1
+      }"
+    ></ng-container>
+  
+    <div>
+      <pre>{{ filtersForm.getRawValue() | json }}</pre>
+    </div>
+  </div>
+  
+  <ng-template
+    #loopList
+    let-filtersForm="filtersForm"
+    let-columns="columns"
+    let-comparatives="comparatives"
+    let-logicOperators="logicOperators"
+    let-parentIndex="parentIndex"
+    let-level="level"
+  >
+    <div class="form-group" [formGroup]="filtersForm">
+      <ng-container *ngIf="getList(filtersForm).length">
+        <ng-container *ngFor="let item of getList(filtersForm); let i = index">
+          <div class="form-group__wrapper">
+            <div class="form-operator">
+              <span *ngIf="i === 0">Where</span>
+              <div *ngIf="i === 1">
+                <select formControlName="logicOperator">
+                  <option
+                    *ngFor="let operator of logicOperators"
+                    [value]="operator.toLowerCase()"
+                  >
+                    {{ operator.toUpperCase() }}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="i > 1">
+                {{ filtersForm.get('logicOperator')?.value }}
+              </div>
+            </div>
+  
+            <div class="form-content">
+              <ng-container *ngIf="item.get('column')">
+                <ng-container formArrayName="list">
+                  <div class="form-content__section" [formGroupName]="i">
+                    <select formControlName="column">
+                      <option value="">Select One</option>
+                      <option *ngFor="let column of columns" (value)="(column)">
+                        {{ column }}
+                      </option>
+                    </select>
+                    <select formControlName="comparative">
+                      <option value="">Select One</option>
+                      <option
+                        *ngFor="let comparative of comparatives"
+                        (value)="(comparative)"
+                      >
+                        {{ comparative }}
+                      </option>
+                    </select>
+                    <input
+                      type="text"
+                      formControlName="value"
+                      placeholder="Value"
+                    />
+                    <button (click)="removeItem(filtersForm, i, parentIndex)">
+                      🚮
+                    </button>
+                  </div>
+                </ng-container>
+              </ng-container>
+  
+              <ng-container *ngIf="item.get('list')?.getRawValue().length">
+                <ng-template
+                  *ngTemplateOutlet="
+                    loopList;
+                    context: {
+                      filtersForm: item,
+                      columns: this.columns,
+                      comparatives: this.comparatives,
+                      logicOperators: this.logicOperators,
+                      parentIndex: i,
+                      level: level + 1
+                    }
+                  "
+                ></ng-template>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+  
+      <div class="form-group__actions">
+        <button (click)="addItem(filtersForm)">Add item</button>
+        <button (click)="addGroup(filtersForm)" *ngIf="isValidLevel(level)">
+          Add group
+        </button>
+      </div>
+    </div>
+  </ng-template>
+  
